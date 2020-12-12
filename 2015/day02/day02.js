@@ -38,5 +38,5 @@ function getPart2(input) {
 const input = fs.readFileSync("./input.txt").toString('utf-8');
 let arr = input.split(/\n/);
 //console.log(arr);
-//console.log(getPart1(arr));
+console.log(getPart1(arr));
 console.log(getPart2(arr));
