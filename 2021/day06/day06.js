@@ -41,8 +41,8 @@ function getPart2(input) {
     log("Initial state: ", lanternFish);
     for (let i = 0; i < 256; i++) {
         const numberOfNewFish = lanternFish.shift(); // age all by shifting array and find number of new fish
-        lanternFish[6] = lanternFish[6] + numberOfNewFish; //the mothers start at 6
-        lanternFish.push(numberOfNewFish); //add the new children
+        lanternFish[6] += numberOfNewFish; // the mothers start at 6
+        lanternFish[8] = numberOfNewFish; //add the new children
         log(`After ${n(i + 1)} days: `, lanternFish, ` new: ${numberOfNewFish}`)
     }
     return lanternFish.reduce((a, i) => a + i, 0);
