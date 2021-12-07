@@ -2,9 +2,8 @@ fs = require("fs");
 
 
 function getPart1(input) {
-    return input.map((value) => {
-        return parseInt(value);
-    }).reduce((acc, value) => {
+    return input.map(Number)
+        .reduce((acc, value) => {
         return {
             inc: acc.inc + (value > acc.prev ? 1 : 0),
             prev: value
