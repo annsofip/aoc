@@ -69,13 +69,39 @@ function getPart2(input) {
             const current = mem.get(key);
             const neighbors = getNeighbors([x, y]);
             if (neighbors.every(n => n > current)) {
-                lowPoints.push(current);
+                lowPoints.push([x, y]);
             }
         }
     }
 
+    function check([x, y], mem) {
+        if (mem.get(getKey(x, y)) === 9) {
+            return 0;
+        }
 
-    return lowPoints.map(l => l + 1).reduce((sum, riskLevel) => sum + riskLevel, 0);
+        mem.set(getKey(x, y), 9);
+        let size = 1;
+
+        if (x - 1 >= 0) {
+            size += check([x - 1, y], mem);
+        }
+        if (x + 1 < input[y].length) {
+            size += check([x + 1, y], mem);
+        }
+        if (y - 1 >= 0) {
+            size += check([x, y - 1], mem);
+        }
+        if (y + 1 < input.length) {
+            size += check([x, y + 1], mem);
+        }
+
+        return size;
+    }
+
+    const basins = lowPoints.map(point => check(point, mem));
+
+    return basins.sort((a, b) => b - a)
+        .splice(0, 3).reduce((sum, a) => sum * a);
 }
 
 
