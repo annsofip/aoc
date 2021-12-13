@@ -16,7 +16,8 @@ function printBoard(maxY, maxX, mem, forcePrint = false) {
     let line = ""
     for (let y = 0; y <= maxY; y++) {
         for (let x = 0; x <= maxX; x++) {
-            line = line.concat(mem.get(getKey(x, y)) ? mem.get(getKey(x, y)) : ".")
+            const key = getKey(x, y);
+            line = line.concat(mem.get(key) ? mem.get(key) : ".");
         }
         line = line.concat("\n");
     }
